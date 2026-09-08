@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LandSecureAI | NEXORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-mark">N</div><div><strong>LandSecureAI</strong><span>NEXORA / SIH 2026</span></div></div>
+        <nav aria-label="Primary navigation">
+          <a href="#dashboard" data-route="dashboard"><span class="nav-icon">⌂</span>Dashboard</a>
+          <a href="#validation" data-route="validation"><span class="nav-icon">＋</span>New Validation</a>
+          <a href="#records" data-route="records"><span class="nav-icon">▤</span>Processed Records</a>
+          <a href="#gis" data-route="gis"><span class="nav-icon">⌖</span>GIS Map</a>
+          <a href="#about" data-route="about"><span class="nav-icon">i</span>About System</a>
+        </nav>
+        <div class="sidebar-footer"><span class="status-dot"></span>Demo environment online<p>Intelligent Land Record Digitization &amp; Validation</p></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar"><div><p class="kicker">NEXORA / INTELLIGENT LAND RECORD SYSTEM</p><h1 id="page-title">Command Dashboard</h1></div><a class="button button-primary" href="#validation">＋ New Validation</a></header>
+
+        <section class="view" id="view-dashboard">
+          <div class="hero-row"><div><p class="kicker cyan">SYSTEM OVERVIEW</p><h2>Trust every parcel record.</h2><p class="hero-copy">Digitize, structure and validate land documents with an explainable AI-assisted workflow.</p></div><div class="live-chip"><span class="status-dot"></span>All systems operational</div></div>
+          <div class="stats-grid" id="stats-grid"></div>
+          <div class="dashboard-grid"><article class="panel workflow-panel"><div class="panel-heading"><div><p class="kicker">PIPELINE</p><h3>Validation workflow</h3></div><span class="mono muted">07 stages</span></div><div class="workflow" id="workflow"></div></article><article class="panel activity-panel"><div class="panel-heading"><div><p class="kicker">ACTIVITY FEED</p><h3>Latest records</h3></div><a href="#records" class="text-link">View all →</a></div><div id="recent-records"></div></article></div>
+        </section>
+
+        <section class="view hidden" id="view-validation">
+          <div class="page-intro"><p class="kicker cyan">DOCUMENT INGESTION</p><h2>Upload Land Record</h2><p>Upload a scanned land document, image or PDF for digitization and validation. OCR is simulated locally for a reliable presentation demo.</p></div>
+          <div class="validation-grid"><article class="panel upload-panel"><div class="panel-heading"><div><p class="kicker">STEP 01 / UPLOAD</p><h3>Choose your document</h3></div><span class="stage-number">01</span></div><label class="dropzone" id="dropzone" for="file-input"><input id="file-input" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.webp,.bmp,.txt" /><span class="upload-icon">↥</span><strong>Drop a land record here</strong><span>PDF, image, or text document</span><em id="file-label">No file selected</em></label><div class="file-note"><span class="status-dot"></span>Works offline with simulated OCR</div><button class="button button-primary full-width" id="submit-btn" type="button">Extract &amp; Validate <span>→</span></button><p class="form-status" id="form-status" role="status"></p></article><article class="panel loading-panel hidden" id="loading-panel"><div class="panel-heading"><div><p class="kicker cyan">PROCESSING</p><h3>Analyzing document</h3></div><span class="spinner"></span></div><div class="processing-steps" id="processing-steps"></div></article></div>
+          <div class="results-area hidden" id="validation-results"><div class="result-header"><div><p class="kicker cyan">STEP 03 / DECISION</p><h2>Validation Results</h2><p id="result-filename"></p></div><button class="button button-warning" id="mismatch-btn" type="button">Demo: Show Mismatch</button></div><div class="result-status" id="result-status"></div><div class="result-grid"><article class="panel"><div class="panel-heading"><div><p class="kicker">OCR OUTPUT</p><h3>Extracted OCR Details</h3></div><span class="mono muted">LOCAL SIMULATION</span></div><div class="details-table" id="ocr-details"></div></article><article class="panel"><div class="panel-heading"><div><p class="kicker">REGISTRY COMPARISON</p><h3>AI Validation Results</h3></div><span class="mono muted">EXPLAINABLE</span></div><div class="checks" id="validation-checks"></div></article></div></div>
+        </section>
+
+        <section class="view hidden" id="view-records"><div class="page-intro"><p class="kicker cyan">RECORDS / LOCAL REGISTRY</p><h2>Processed Records</h2><p>Browse predefined registry records and inspect their simulated OCR validation detail.</p></div><article class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>ID</th><th>Owner</th><th>Survey No.</th><th>Area</th><th>Status</th><th></th></tr></thead><tbody id="records-table"></tbody></table></div></article><article class="panel record-detail hidden" id="record-detail"></article></section>
+
+        <section class="view hidden" id="view-gis"><div class="page-intro"><p class="kicker cyan">SPATIAL VERIFICATION</p><h2>GIS Parcel Verification</h2><p>Boundary confidence without dependency on an external map API.</p></div><div class="gis-grid"><article class="panel map-panel"><div class="map-toolbar"><span class="map-label"><i></i> SIMULATED CADASTRAL VIEW</span><span class="mono muted">13.1436° N / 79.9082° E</span></div><div class="map-canvas"><div class="map-grid-lines"></div><svg viewBox="0 0 700 390" role="img" aria-label="Simulated parcel map"><path class="parcel-shadow" d="M180 74 L540 112 L590 287 L354 342 L121 246 Z"/><path class="parcel" d="M180 74 L540 112 L590 287 L354 342 L121 246 Z"/><path class="boundary-line" d="M180 74 L354 342 M540 112 L121 246"/><circle class="location-pin" cx="352" cy="203" r="10"/><circle class="pin-ring" cx="352" cy="203" r="21"/><text x="365" y="198">142/3A</text></svg><div class="map-coordinate coordinate-a">13.1436° N</div><div class="map-coordinate coordinate-b">79.9082° E</div></div></article><article class="panel gis-info"><p class="kicker">PARCEL PROFILE</p><h3>Survey 142/3A</h3><div class="gis-stat"><span>Owner</span><strong>Ravi Kumar</strong></div><div class="gis-stat"><span>Area</span><strong>2.50 Acres</strong></div><div class="gis-stat"><span>Village</span><strong>Tiruvallur</strong></div><div class="gis-status"><span class="status-dot"></span><div><strong>GIS Status: VERIFIED</strong><p>Land parcel boundaries are consistent with the digital record.</p></div></div></article></div></section>
+
+        <section class="view hidden" id="view-about"><div class="page-intro"><p class="kicker cyan">PLATFORM / NEXORA</p><h2>About the system</h2><p>LandSecureAI is an intelligent platform designed to digitize and validate scanned and handwritten land records.</p></div><div class="about-grid"><article class="panel feature-panel"><p class="kicker">CAPABILITIES</p><h3>From paper to trusted data.</h3><ul><li>OCR-based land record digitization</li><li>Automatic extraction of owner, survey number, area and location</li><li>AI-based validation and error detection</li><li>Detection of missing or mismatched information</li><li>GIS-based land parcel verification</li><li>Searchable digital records</li><li>Human review for suspicious records</li></ul></article><article class="panel tech-panel"><p class="kicker">TECHNOLOGY STACK</p><h3>Built for practical deployment.</h3><div class="tech-grid"><span>Python</span><span>FastAPI</span><span>OCR</span><span>OpenCV</span><span>AI / ML</span><span>GIS</span><span>PostgreSQL</span><span>PostGIS</span></div></article></div></section>
+      </main>
+    </div>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
